@@ -80,21 +80,21 @@
             <tbody>
                 @forelse($articles as $article)
                 <tr>
-                    <td>{{ $article->id }}</td>
-                    <td class="title-cell">{{ $article->title }}</td>
-                    <td>
+                    <td data-label="ID">{{ $article->id }}</td>
+                    <td data-label="Título" class="title-cell">{{ $article->title }}</td>
+                    <td data-label="Categoría">
                         <span class="category-badge">
                             {{ $article->category->name ?? 'Sin categoría' }}
                         </span>
                     </td>
-                    <td>
+                    <td data-label="Estado">
                         @if($article->status == 'published')
                             <span class="status-badge status-published">Publicado</span>
                         @else
                             <span class="status-badge status-draft">Borrador</span>
                         @endif
                     </td>
-                    <td>
+                    <td data-label="Fecha">
                         @if($article->published_at)
                             <span class="date-cell">
                                 <svg class="date-icon" viewBox="0 0 20 20" fill="currentColor">
@@ -106,7 +106,7 @@
                             <span class="date-empty">—</span>
                         @endif
                     </td>
-                    <td class="actions-cell">
+                    <td data-label="Acciones" class="actions-cell">
                         <a href="{{ route('admin.articles.edit', $article) }}" class="btn-edit">Editar</a>
                         <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" class="delete-form">
                             @csrf @method('DELETE')

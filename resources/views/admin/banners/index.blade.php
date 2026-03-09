@@ -35,26 +35,26 @@
             <tbody>
                 @forelse($banners as $banner)
                 <tr>
-                    <td>{{ $banner->order }}</td>
-                    <td>
+                    <td data-label="Orden">{{ $banner->order }}</td>
+                    <td data-label="Imagen">
                         @if($banner->image)
                             <img src="{{ Storage::url($banner->image) }}" 
                                  alt="{{ $banner->title }}" 
-                                 style="width: 100px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                 class="banner-thumbnail">
                         @else
                             <span class="text-gray-400">Sin imagen</span>
                         @endif
                     </td>
-                    <td>{{ $banner->title ?? 'Sin título' }}</td>
-                    <td>{{ $banner->subtitle ?? 'Sin subtítulo' }}</td>
-                    <td>
+                    <td data-label="Título">{{ $banner->title ?? 'Sin título' }}</td>
+                    <td data-label="Subtítulo">{{ $banner->subtitle ?? 'Sin subtítulo' }}</td>
+                    <td data-label="Estado">
                         @if($banner->is_active)
                             <span class="status-badge status-published">Activo</span>
                         @else
                             <span class="status-badge status-draft">Inactivo</span>
                         @endif
                     </td>
-                    <td class="actions-cell">
+                    <td data-label="Acciones" class="actions-cell">
                         <a href="{{ route('admin.banners.edit', $banner) }}" class="btn-edit">
                             Editar
                         </a>
