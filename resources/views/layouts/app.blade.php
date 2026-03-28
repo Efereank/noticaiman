@@ -4,15 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Alcaldía Almirante Padilla') }}</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    
+    <title>{{ config('app.name', 'Noticaimán') }}</title>
+
+    <!-- Preconnect para fuentes (mejora velocidad) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- Estilos adicionales -->
     @stack('styles')
 </head>
@@ -22,14 +24,22 @@
         <div class="navbar-container">
             <div class="navbar-wrapper">
                 <!-- Logo -->
-            <div class="navbar-left">
-                <a href="{{ route('home') }}" class="logo">
-                    <img src="{{ asset('img/logo.png') }}" alt="Alcaldía" class="logo-img">
-                    <span class="logo-text">Alcaldía Bolivariana Almirante Padilla</span>
-                </a>
-            </div>
+                <div class="navbar-left">
+                    <a href="{{ route('home') }}" class="logo">
+                        <div class="logo-wrapper">
+                            <img src="{{ asset('img/logo.png') }}"
+                                alt="Alcaldía"
+                                class="logo-img"
+                                loading="eager"
+                                width="75"
+                                height="75">
+                        </div>
+                        <span class="logo-text">NOTICAIMÁN</span>
+                    </a>
+                </div>
+
                 <!-- Botón hamburguesa -->
-                <button class="hamburger-btn" id="hamburgerBtn">
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menú">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -48,7 +58,7 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        
+
                         <div class="dropdown-menu" x-show="open" x-cloak>
                             @php
                                 use App\Models\Category;
@@ -63,7 +73,7 @@
                     </div>
                     <a href="#" class="nav-link">Contacto</a>
 
-                    <!-- ===== BOTONES DE USUARIO PARA MÓVIL (DENTRO DEL MENÚ) ===== -->
+                    <!-- Botones de usuario para móvil -->
                     <div class="mobile-user-buttons">
                         @auth
                             <a href="{{ route('admin.articles.index') }}" class="nav-link mobile-admin-link">Admin</a>
@@ -73,12 +83,11 @@
                             </form>
                         @else
                             <a href="{{ route('login') }}" class="nav-link mobile-login-link">Login</a>
-                        <!--    <a href="{{ route('register') }}" class="nav-link mobile-register-link">Registro</a> -->
                         @endauth
                     </div>
                 </div>
-                
-                <!-- Botones de usuario escritorio (se mantienen) -->
+
+                <!-- Botones de usuario escritorio -->
                 <div class="navbar-right desktop-only">
                     @auth
                         <a href="{{ route('admin.articles.index') }}" class="admin-link">Admin</a>
@@ -86,20 +95,24 @@
                             @csrf
                             <button type="submit" class="logout-btn">Salir</button>
                         </form>
-                    @else
-                        <!-- tus botones -->
                     @endauth
                 </div>
             </div>
+        </div>
+
+        <div class="eslogan">
+            <span class="eslogan-texto">Sígueme en</span>
+            <a href="https://www.facebook.com/soyericjose" class="eslogan-enlace" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669c1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <span class="eslogan-texto eslogan-usuario">@soyericJosé</span>
         </div>
     </nav>
 
     <!-- Overlay para móvil -->
     <div class="menu-overlay" id="menuOverlay"></div>
-
-    <div class="eslogan">
-        <h1 class="logan">¡Juntos Transformamos Nuestro Municipio!</h1>
-    </div>
 
     <!-- Contenido principal -->
     <main class="main-content">
@@ -109,7 +122,7 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-container">
-            © {{ date('Y') }} Alcaldía del Municipio Almirante Padilla. Todos los derechos reservados.
+            NotiCaimán. Todos los derechos reservados© {{ date('Y') }}.
         </div>
     </footer>
 

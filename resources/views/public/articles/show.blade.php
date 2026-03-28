@@ -2,33 +2,27 @@
 
 @section('content')
 <div class="article-show-container">
-    <!-- Contenido principal + Sidebar -->
     <div class="article-layout">
-        <!-- Columna principal (artículo) -->
+        <!-- Columna principal -->
         <div class="article-main">
             <article class="article-card">
-                <!-- Imagen destacada -->
                 @if($article->image)
                 <div class="article-image-container">
-                    <img src="{{ Storage::url($article->image) }}" 
+                    <img src="{{ Storage::url($article->image) }}"
                          alt="{{ $article->title }}"
                          class="article-image-full">
                 </div>
                 @endif
-                
-                <!-- Contenido -->
+
                 <div class="article-content-wrapper">
-                    <!-- Migas de pan -->
                     <div class="breadcrumb">
                         <a href="{{ route('home') }}" class="breadcrumb-link">Inicio</a>
                         <span class="breadcrumb-separator">›</span>
                         <span class="breadcrumb-current">{{ $article->category->name ?? 'Noticias' }}</span>
                     </div>
-                    
-                    <!-- Título -->
+
                     <h1 class="article-title-full">{{ $article->title }}</h1>
-                    
-                    <!-- Meta información -->
+
                     <div class="article-meta-full">
                         <div class="meta-item">
                             <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,20 +44,17 @@
                             {{ $article->views }} vistas
                         </div>
                     </div>
-                    
-                    <!-- Extracto -->
+
                     @if($article->excerpt)
                     <div class="article-excerpt-full">
                         {{ $article->excerpt }}
                     </div>
                     @endif
-                    
-                    <!-- Cuerpo de la noticia -->
+
                     <div class="article-body-full">
                         {!! nl2br(e($article->body)) !!}
                     </div>
-                    
-                    <!-- Botón para volver -->
+
                     <div class="article-footer-full">
                         <a href="{{ route('home') }}" class="back-button">
                             <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,18 +67,18 @@
             </article>
         </div>
 
-        <!-- Sidebar con noticias relacionadas -->
+        <!-- Sidebar -->
         <aside class="article-sidebar">
             <div class="sidebar-widget">
                 <h3 class="sidebar-title">Noticias relacionadas</h3>
-                
+
                 @if($relatedArticles->count() > 0)
                     <div class="related-articles-list">
                         @foreach($relatedArticles as $related)
                         <div class="related-article-item">
                             @if($related->image)
                             <div class="related-article-image">
-                                <img src="{{ Storage::url($related->image) }}" 
+                                <img src="{{ Storage::url($related->image) }}"
                                      alt="{{ $related->title }}">
                             </div>
                             @endif
@@ -128,32 +119,5 @@
             </div>
         </aside>
     </div>
-
-
-    <!-- ===== SECCIÓN DE SERVICIOS ESTILO FOTO ===== -->
-<div class="services-photo-section">
-    <div class="services-photo-grid">
-        <!-- Servicios en Línea -->
-        <div class="service-photo-card-1">
-            <h3 class="service-photo-title">Servicios en Línea</h3>
-            <p class="service-photo-description">Realiza tus trámites desde la comodidad de tu hogar</p>
-            <a href="#" class="service-photo-button">Acceder</a>
-        </div>
-
-        <!-- Participa y Opina -->
-        <div class="service-photo-card-2">
-            <h3 class="service-photo-title">Participa y Opina</h3>
-            <p class="service-photo-description">Tu voz es importante para transformar nuestro municipio</p>
-            <a href="#" class="service-photo-button">Participar</a>
-        </div>
-
-        <!-- Calendario de Eventos -->
-        <div class="service-photo-card-3">
-            <h3 class="service-photo-title">Calendario de Eventos</h3>
-            <p class="service-photo-description">Conoce las actividades programadas en tu comunidad</p>
-            <a href="#" class="service-photo-button">Ver Eventos</a>
-        </div>
-    </div>
-</div>
 </div>
 @endsection
