@@ -71,7 +71,7 @@ font-family: "Inter", sans-serif;
 }
 
 .logo-img {
-    height: 75px;
+    height: 65px;
     width: auto;
     display: block;
 }
@@ -90,7 +90,7 @@ font-family: "Inter", sans-serif;
     }
 
     .logo-img {
-        height: 70px; /* Un poco más pequeño en móvil */
+        height: 60px; /* Un poco más pequeño en móvil */
     }
 
     .logo-text {
@@ -100,7 +100,7 @@ font-family: "Inter", sans-serif;
 
 @media (max-width: 480px) {
     .logo-img {
-        height: 70px; /* Un poco más pequeño en móvil */
+        height: 60px; /* Un poco más pequeño en móvil */
     }
 
 
